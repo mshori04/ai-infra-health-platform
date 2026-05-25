@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Infra Health Platform</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f4f4f4;
+            padding: 40px;
+        }
+
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            padding: 12px;
+            width: 100%;
+            background: black;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .result {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eeeeee;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>AI Infra Health Platform</h1>
+
+    <form action="/analyze" method="post">
+
+        <label>CPU Usage</label>
+        <input type="number" step="0.1" name="cpu_usage" required>
+
+        <label>Memory Usage</label>
+        <input type="number" step="0.1" name="memory_usage" required>
+
+        <label>Latency</label>
+        <input type="number" step="0.1" name="latency" required>
+
+        <label>Error Rate</label>
+        <input type="number" step="0.1" name="error_rate" required>
+
+        <button type="submit">
+            Analyze Infrastructure
+        </button>
+
+    </form>
+
+    {% if prediction is not none %}
+
+    <div class="result">
+
+        <h2>Prediction Results</h2>
+
+        <p>
+            <strong>Outage Prediction:</strong>
+            {{ prediction }}
+        </p>
+
+        <p>
+            <strong>Failure Probability:</strong>
+            {{ probability }}%
+        </p>
+
+        <p>
+            <strong>System Status:</strong>
+            {{ status }}
+        </p>
+
+        <p>
+            <strong>Anomaly Detection:</strong>
+            {{ anomaly }}
+        </p>
+
+    </div>
+
+    {% endif %}
+
+</div>
+
+</body>
+</html>
